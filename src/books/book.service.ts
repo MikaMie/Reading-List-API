@@ -1,4 +1,3 @@
-// src/books/books.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -35,6 +34,9 @@ export class BooksService {
 
   async remove(id: string): Promise<void> {
     const res = await this.bookModel.findByIdAndDelete(id).exec();
-    if (!res) throw new NotFoundException(`Book ${id} not found`);
+    if (!res)
+      throw new NotFoundException(
+        `Book ${id} could not be deleted, because it was not found!`,
+      );
   }
 }
