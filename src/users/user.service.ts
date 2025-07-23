@@ -8,13 +8,12 @@ import { User, UserDocument } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  // pw hashen!
   async create(dto: CreateUserDTO): Promise<User> {
     const user = await this.userModel.findOne({ email: dto.email });
 
@@ -32,13 +31,13 @@ export class UserService {
     return this.userModel.find().exec();
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<UserDocument> {
     const user = await this.userModel.findById(id).exec();
     if (!user) throw new NotFoundException(`User ${id} not found`);
     return user;
   }
 
-  async findbyEmail(email: string): Promise<User> {
+  async findbyEmail(email: string): Promise<UserDocument> {
     const user = await this.userModel.findOne({ email });
 
     if (!user) {

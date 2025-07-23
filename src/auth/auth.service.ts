@@ -1,10 +1,14 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../users/user.service';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UserService) {}
+  constructor(
+    private usersService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async signIn(username: string, email: string, pass: string): Promise<any> {
     const user = await this.usersService.findbyEmail(email);
@@ -12,9 +16,9 @@ export class AuthService {
     if (!isMatch) {
       throw new UnauthorizedException('You used the wrong password!');
     }
-    const { password, ...result } = user;
-    // TODO: Generate a JWT and return it here
-    // instead of the user object
-    return result;
+    const payload = { sub: user._id, username: user.name };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 }

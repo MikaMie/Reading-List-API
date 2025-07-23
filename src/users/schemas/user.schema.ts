@@ -9,7 +9,7 @@ export class User {
   name: string;
 
   @Prop()
-  age: number;
+  email: string;
 
   @Prop()
   password: string;
