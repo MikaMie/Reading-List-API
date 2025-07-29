@@ -1,98 +1,133 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🧠 NestJS Library API – RESTful CRUD API with JWT Authentication
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a full-featured backend project for a library system I built using **NestJS** and **MongoDB**.  
+The goal was to develop a modern, modular, and scalable **REST API** that supports **authentication, authorization**, and full **CRUD** operations – while following best practices of the NestJS framework.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+🚀 Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+✅ Modular RESTful API built with NestJS  
+🔐 User authentication & authorization using JWT (Bearer Tokens)  
+🗃️ MongoDB with Mongoose for data modeling  
+🧱 CRUD operations for **users** and **books**  
+🔐 Passwords are securely hashed using **bcrypt**  
+🧩 AuthGuard & middleware-based route protection  
+📄 API documentation via Swagger (OpenAPI)  
+🧹 Robust validation using class-validator  
+🧾 Request logging via custom middleware (`RequestLogger`)  
+⚙️ Configuration via `.env` (JWT secret, DB connection, etc.)
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+📦 Tech Stack
 
-## Compile and run the project
+- **NestJS** (TypeScript, Modular Architecture)
+- **MongoDB** with **Mongoose**
+- **JWT** for stateless authentication
+- **bcryptjs** for password hashing
+- **class-validator** for input validation
+- **Swagger (OpenAPI)** for API documentation
+- **Express** under the hood via NestJS
+- **dotenv** for environment configuration
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+📄 What I Built & Learned
 
-# production mode
-$ npm run start:prod
-```
+🧱 Created reusable modules (Users, Auth, Books) using NestJS conventions  
+🔐 Built a secure authentication system with Guards and JWT  
+🛠 Integrated middleware for logging every incoming request  
+📚 Modeled Users and Books using clean Mongoose schemas  
+🧼 Applied DTOs and class-based validation to sanitize inputs  
+🔍 Implemented clean RESTful routes for full CRUD on both resources  
+🧠 Gained deep understanding of NestJS decorators, lifecycle, and architecture
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+🌍 Environment Configuration
 
-# e2e tests
-$ npm run test:e2e
+This project uses a `.env` file to store sensitive configuration values like JWT secrets and database URLs.  
+This keeps secrets out of the codebase and allows flexible configuration for different environments.
 
-# test coverage
-$ npm run test:cov
-```
+### 🛠 Required Environment Variables
 
-## Deployment
+Create a `.env` file in the project root with the following content:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+PORT=3000
+JWT_SECRET=your-very-secret-key
+JWT_EXPIRES_IN=1h
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+| Variable         | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| `PORT`           | Port the app runs on (optional, default: 3000) |
+| `JWT_SECRET`     | Secret key used to sign JWTs                   |
+| `JWT_EXPIRES_IN` | Token lifetime (e.g., `1h`, `30m`, `7d`)       |
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+### 🚫 Do Not Commit Secrets
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Make sure your `.gitignore` includes: .env
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+🧪 Example Endpoints
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+> 📘 All protected routes require a valid JWT in the header:  
+> `Authorization: Bearer <token>`
 
-## Support
+### 🧑 User Routes
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- `POST /auth/register` – Register a new user
+- `POST /auth/login` – Login and receive a JWT
+- `GET /users` – Get all users (protected)
+- `GET /users/:id` – Get user by ID (protected)
+- `PATCH /users/:id` – Update user by ID (protected)
+- `DELETE /users/:id` – Delete user by ID (protected)
 
-## Stay in touch
+### 📚 Book Routes
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `POST /books` – Create a new book (protected)
+- `GET /books` – Get all books (protected)
+- `GET /books/:id` – Get a specific book (protected)
+- `PATCH /books/:id` – Update book info (protected)
+- `DELETE /books/:id` – Delete a book (protected)
 
-## License
+---
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+📘 API Documentation – Swagger UI
+
+This API is fully documented using **Swagger (OpenAPI 3)**, with live documentation and interactive testing available in your browser.
+
+🔗 **Swagger UI Access:**  
+http://localhost:3000/api
+
+Features:
+
+- 📖 Full documentation for all endpoints, methods, and DTOs
+- 🔐 JWT Authentication via Swagger's "Authorize" button
+- 🧾 Live examples for request bodies and responses
+- 💬 Clear separation by modules/tags (`auth`, `users`, `books`)
+- 📦 Schemas generated from class-based DTOs
+
+---
+
+🛡️ Security
+
+- All passwords are securely hashed before being saved
+- JWTs are verified and decoded via a custom `AuthGuard`
+- Unauthorized requests receive clear `401` or `403` responses
+- Middleware ensures logging of all requests (method, path, duration)
+
+---
+
+👨‍💻 Author
+
+Mika Mielinski  
+📫 Contact info coming soon
+
+---
+
+📌 Note
+
+This is a **backend-only project**, focused on clean API design, architecture, and authentication using NestJS.  
+A matching frontend (e.g. with Angular or React) may follow later.
